@@ -1,0 +1,70 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px;
+  background-color: #778379ff;
+  color: #fff;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-logo {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.5rem;
+  user-select: none;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+  border: 2px solid #ffffffaa;
+  transition: border-color 0.3s ease;
+}
+
+.navbar-avatar:hover {
+  border-color: #f0f0f0;
+}
+
+.navbar-username {
+  font-weight: 600;
+  font-size: 1rem;
+  user-select: none;
+}
+
+.navbar-button {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.navbar-logout-btn {
+  background-color: #ff4d4f;
+}
+
+.navbar-logout-btn:hover {
+  background-color: #d9363e;
+}
+
+.navbar-login-btn {
+  background-color: #1890ff;
+}
+
+.navbar-login-btn:hover {
+  background-color: #1371d9;
+}

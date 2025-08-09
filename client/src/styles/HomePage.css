@@ -1,0 +1,226 @@
+
+/* Reset cơ bản */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+body {
+  background-color: #f5f7fa;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 720px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.buttons-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.buttons-group button {
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.25s ease;
+}
+
+.buttons-group button:hover {
+  background-color: #1c5980;
+}
+
+.buttons-group input[type="text"] {
+  flex-grow: 1;
+  min-width: 200px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.25s ease;
+}
+
+.buttons-group input[type="text"]:focus {
+  outline: none;
+  border-color: #2980b9;
+}
+
+/* Form tạo bài viết */
+.create-post-form {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+  margin-bottom: 30px;
+}
+
+.create-post-form input[type="text"],
+.create-post-form textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  resize: vertical;
+  transition: border-color 0.25s ease;
+}
+
+.create-post-form input[type="text"]:focus,
+.create-post-form textarea:focus {
+  outline: none;
+  border-color: #2980b9;
+}
+
+.create-post-form textarea {
+  min-height: 150px;
+}
+
+.char-count {
+  font-size: 0.85rem;
+  color: #777;
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.create-post-form button {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.create-post-form button:hover {
+  background-color: #1e8449;
+}
+
+/* Danh sách bài viết */
+.post-card {
+  background: white;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 6px rgb(0 0 0 / 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.post-card:hover {
+  box-shadow: 0 6px 15px rgb(0 0 0 / 0.15);
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.post-header img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+  border: 2px solid #2980b9;
+  background-color: #ecf0f1;
+}
+
+.post-header strong {
+  font-size: 1.1rem;
+  color: #34495e;
+}
+
+.post-header small {
+  display: block;
+  font-size: 0.8rem;
+  color: #7f8c8d;
+  margin-top: 2px;
+}
+
+.post-title {
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.post-content {
+  font-size: 1rem;
+  color: #555;
+  white-space: pre-line;
+}
+
+/* Phân trang */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 25px;
+  margin-bottom: 40px;
+}
+
+.pagination button {
+  background-color: #2980b9;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.pagination button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .buttons-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .buttons-group input[type="text"] {
+    margin-top: 10px;
+  }
+
+  .post-card {
+    padding: 15px 16px;
+  }
+
+  .post-header img {
+    width: 38px;
+    height: 38px;
+  }
+}
