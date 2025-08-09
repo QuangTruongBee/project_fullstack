@@ -9,6 +9,8 @@ export interface User {
   avatar?: string;
 }
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export function useUser() {
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
@@ -22,7 +24,7 @@ export function useUser() {
       }
 
       try {
-        const res = await axios.get<User>('http://localhost:5000/api/auth/me', {
+        const res = await axios.get<User>(`${API_URL}/api/auth/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(res.data);

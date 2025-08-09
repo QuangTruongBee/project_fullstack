@@ -25,9 +25,11 @@ interface PostDetailType {
   comments: Comment[];
 }
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const PostDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const { user } = useUser(); // Lấy thông tin user hiện tại
+  const { user } = useUser();
   const [post, setPost] = useState<PostDetailType | null>(null);
   const [newComment, setNewComment] = useState("");
   const [editCommentId, setEditCommentId] = useState<number | null>(null);
@@ -50,11 +52,10 @@ const PostDetail = () => {
 
   const fetchPostDetail = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/posts/${id}`, {
+      const res = await axios.get(`${API_URL}/api/posts/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPost(res.data);
-      // Nếu đang ở chế độ edit post, cập nhật lại dữ liệu edit
       setEditPostTitle(res.data.title);
       setEditPostContent(res.data.content);
     } catch (err) {
@@ -69,7 +70,7 @@ const PostDetail = () => {
     }
     try {
       await axios.post(
-        `http://localhost:5000/api/posts/${id}/comments`,
+        `${API_URL}/api/posts/${id}/comments`,
         { text: newComment },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -81,7 +82,6 @@ const PostDetail = () => {
     }
   };
 
-  // Sửa bình luận
   const startEditComment = (commentId: number, currentText: string) => {
     setEditCommentId(commentId);
     setEditCommentText(currentText);
@@ -99,7 +99,7 @@ const PostDetail = () => {
     }
     try {
       await axios.put(
-        `http://localhost:5000/api/posts/${id}/comments/${editCommentId}`,
+        `${API_URL}/api/posts/${id}/comments/${editCommentId}`,
         { text: editCommentText },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -112,14 +112,12 @@ const PostDetail = () => {
     }
   };
 
-  // Xóa bình luận
   const deleteComment = async (commentId: number) => {
     if (!window.confirm("Bạn có chắc muốn xóa bình luận này?")) return;
     try {
-      await axios.delete(
-        `http://localhost:5000/api/posts/${id}/comments/${commentId}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      await axios.delete(`${API_URL}/api/posts/${id}/comments/${commentId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       fetchPostDetail();
     } catch (err) {
       console.error("Lỗi khi xóa bình luận", err);
@@ -127,7 +125,6 @@ const PostDetail = () => {
     }
   };
 
-  // Sửa bài viết
   const startEditPost = () => {
     setEditPostMode(true);
   };
@@ -147,7 +144,7 @@ const PostDetail = () => {
     }
     try {
       await axios.put(
-        `http://localhost:5000/api/posts/${id}`,
+        `${API_URL}/api/posts/${id}`,
         { title: editPostTitle, content: editPostContent },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -159,11 +156,10 @@ const PostDetail = () => {
     }
   };
 
-  // Xóa bài viết
   const deletePost = async () => {
     if (!window.confirm("Bạn có chắc muốn xóa bài viết này?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${id}`, {
+      await axios.delete(`${API_URL}/api/posts/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("Xóa bài viết thành công!");
@@ -180,18 +176,13 @@ const PostDetail = () => {
     <>
       <Navbar />
       <div className="container">
-        {/* Thông tin tác giả bài viết */}
         <div className="post-author">
-          <img
-            src={post.authorAvatar || defaultAvatar}
-            alt={post.authorName}
-          />
+          <img src={post.authorAvatar || defaultAvatar} alt={post.authorName} />
           <div>
             <strong>{post.authorName}</strong>
             <br />
             <small>{new Date(post.createdAt).toLocaleString()}</small>
           </div>
-          {/* Nút sửa, xóa bài viết nếu là tác giả */}
           {user?.id === post.authorId && (
             <div className="post-actions">
               {!editPostMode ? (
@@ -213,7 +204,6 @@ const PostDetail = () => {
           )}
         </div>
 
-        {/* Hiển thị form sửa bài viết hoặc nội dung bài viết */}
         {editPostMode ? (
           <div className="edit-post-form">
             <input

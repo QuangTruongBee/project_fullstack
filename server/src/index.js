@@ -14,7 +14,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
 app.use('/api', userRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`Server đang chạy ở http://localhost:${PORT}`);
+  console.log(`Server đang chạy ở port ${PORT}`);
 });
+

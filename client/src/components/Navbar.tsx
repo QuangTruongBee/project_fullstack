@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Navbar.css";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function Navbar() {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
@@ -38,7 +40,7 @@ function Navbar() {
       formData.append("avatar", file);
 
       const response = await axios.put(
-        "http://localhost:5000/api/user/avatar",
+        `${API_URL}/api/user/avatar`,
         formData,
         {
           headers: {

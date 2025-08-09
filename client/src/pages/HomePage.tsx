@@ -16,6 +16,7 @@ interface Post {
 }
 
 const MAX_CONTENT_LENGTH = 150;
+const API_URL = process.env.REACT_APP_API_URL;
 
 const HomePage = () => {
   const { user } = useUser();
@@ -37,10 +38,10 @@ const HomePage = () => {
     if (!token) return;
     try {
       const url = viewMyPosts
-        ? `http://localhost:5000/api/posts/my-posts?page=${page}&limit=${limit}&search=${encodeURIComponent(
+        ? `${API_URL}/api/posts/my-posts?page=${page}&limit=${limit}&search=${encodeURIComponent(
             search
           )}`
-        : `http://localhost:5000/api/posts?page=${page}&limit=${limit}&search=${encodeURIComponent(
+        : `${API_URL}/api/posts?page=${page}&limit=${limit}&search=${encodeURIComponent(
             search
           )}`;
 
@@ -87,7 +88,7 @@ const HomePage = () => {
     }
     try {
       await axios.post(
-        "http://localhost:5000/api/posts",
+        `${API_URL}/api/posts`,
         { title: newTitle, content: newContent },
         { headers: { Authorization: `Bearer ${token}` } }
       );

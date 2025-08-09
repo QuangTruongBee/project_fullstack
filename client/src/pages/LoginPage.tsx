@@ -3,8 +3,11 @@ import AuthForm from "../components/AuthForm";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function LoginPage() {
   const navigate = useNavigate();
+
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -14,10 +17,7 @@ function LoginPage() {
     };
     console.log("Đăng nhập với:", data);
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        data
-      );
+      const res = await axios.post(`${API_URL}/api/auth/login`, data);
       console.log("Token:", res.data.token);
       alert("Đăng nhập thành công");
       const token = res.data.token;
