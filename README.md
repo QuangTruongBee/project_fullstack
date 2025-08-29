@@ -2,7 +2,8 @@
 
 Dự án Fullstack gồm **Client** (ReactJS) và **Server** (Node.js + Express + Prisma + MySQL).  
 Mục tiêu: Xây dựng MVP cho sàn giáo dục hỗ trợ học tiếng Anh, có tính năng cộng đồng (UGC).
-
+(Hạn sử dụng link demo đến ngày 9/9, lý do: hết thời hạn deploy database và backend)
+demo: https://project-fullstack-nine.vercel.app
 ---
 
 ## 1. Yêu cầu hệ thống
